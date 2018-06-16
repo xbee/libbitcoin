@@ -1,0 +1,205 @@
+project(libbitcoin)
+cmake_minimum_required(VERSION 3.9)
+set(CMAKE_CXX_STANDARD 11)
+
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
+
+include_directories(/usr/local/include/ /usr/include)
+link_directories(/usr/lib)
+link_directories(/usr/local/ib)
+
+link_libraries(bitcoin)
+link_libraries(boost_chrono-mt)
+link_libraries(boost_date_time-mt)
+link_libraries(boost_filesystem)
+link_libraries(boost_iostreams-mt)
+link_libraries(boost_locale-mt)
+link_libraries(boost_log-mt)
+link_libraries(boost_program_options-mt)
+link_libraries(boost_regex-mt)
+link_libraries(boost_system)
+link_libraries(boost_thread-mt)
+link_libraries(pthread)
+link_libraries(secp256k1)
+
+
+add_library(libbitcoin  
+    src/error.cpp  
+    src/chain/block.cpp  
+    src/chain/chain_state.cpp  
+    src/chain/compact.cpp  
+    src/chain/header.cpp  
+    src/chain/input.cpp  
+    src/chain/output.cpp  
+    src/chain/output_point.cpp  
+    src/chain/payment_record.cpp  
+    src/chain/point.cpp  
+    src/chain/point_value.cpp  
+    src/chain/points_value.cpp  
+    src/chain/script.cpp  
+    src/chain/stealth_record.cpp  
+    src/chain/transaction.cpp  
+    src/chain/witness.cpp  
+    src/config/authority.cpp  
+    src/config/base16.cpp  
+    src/config/base2.cpp  
+    src/config/base58.cpp  
+    src/config/base64.cpp  
+    src/config/checkpoint.cpp  
+    src/config/directory.cpp  
+    src/config/endpoint.cpp  
+    src/config/hash160.cpp  
+    src/config/hash256.cpp  
+    src/config/header.cpp  
+    src/config/input.cpp  
+    src/config/output.cpp  
+    src/config/parameter.cpp  
+    src/config/parser.cpp  
+    src/config/point.cpp  
+    src/config/printer.cpp  
+    src/config/script.cpp  
+    src/config/sodium.cpp  
+    src/config/transaction.cpp  
+    src/formats/base_10.cpp  
+    src/formats/base_16.cpp  
+    src/formats/base_32.cpp  
+    src/formats/base_58.cpp  
+    src/formats/base_64.cpp  
+    src/formats/base_85.cpp  
+    src/log/file_collector.cpp  
+    src/log/file_collector_repository.cpp  
+    src/log/file_counter_formatter.cpp  
+    src/log/sink.cpp  
+    src/log/statsd_sink.cpp  
+    src/log/udp_client_sink.cpp  
+    src/machine/interpreter.cpp  
+    src/machine/number.cpp  
+    src/machine/opcode.cpp  
+    src/machine/operation.cpp  
+    src/machine/program.cpp  
+    src/math/checksum.cpp  
+    src/math/crypto.cpp  
+    src/math/elliptic_curve.cpp  
+    src/math/hash.cpp  
+    src/math/secp256k1_initializer.cpp  
+    src/math/secp256k1_initializer.hpp  
+    src/math/stealth.cpp  
+    src/math/external/aes256.c  
+    src/math/external/aes256.h  
+    src/math/external/crypto_scrypt.c  
+    src/math/external/crypto_scrypt.h  
+    src/math/external/hmac_sha256.c  
+    src/math/external/hmac_sha256.h  
+    src/math/external/hmac_sha512.c  
+    src/math/external/hmac_sha512.h  
+    src/math/external/lax_der_parsing.c  
+    src/math/external/lax_der_parsing.h  
+    src/math/external/pbkdf2_sha256.c  
+    src/math/external/pbkdf2_sha256.h  
+    src/math/external/pkcs5_pbkdf2.c  
+    src/math/external/pkcs5_pbkdf2.h  
+    src/math/external/ripemd160.c  
+    src/math/external/ripemd160.h  
+    src/math/external/sha1.c  
+    src/math/external/sha1.h  
+    src/math/external/sha256.c  
+    src/math/external/sha256.h  
+    src/math/external/sha512.c  
+    src/math/external/sha512.h  
+    src/math/external/zeroize.c  
+    src/math/external/zeroize.h  
+    src/message/address.cpp  
+    src/message/alert.cpp  
+    src/message/alert_payload.cpp  
+    src/message/block.cpp  
+    src/message/block_transactions.cpp  
+    src/message/compact_block.cpp  
+    src/message/fee_filter.cpp  
+    src/message/filter_add.cpp  
+    src/message/filter_clear.cpp  
+    src/message/filter_load.cpp  
+    src/message/get_address.cpp  
+    src/message/get_block_transactions.cpp  
+    src/message/get_blocks.cpp  
+    src/message/get_data.cpp  
+    src/message/get_headers.cpp  
+    src/message/header.cpp  
+    src/message/headers.cpp  
+    src/message/heading.cpp  
+    src/message/inventory.cpp  
+    src/message/inventory_vector.cpp  
+    src/message/memory_pool.cpp  
+    src/message/merkle_block.cpp  
+    src/message/messages.cpp  
+    src/message/network_address.cpp  
+    src/message/not_found.cpp  
+    src/message/ping.cpp  
+    src/message/pong.cpp  
+    src/message/prefilled_transaction.cpp  
+    src/message/reject.cpp  
+    src/message/send_compact.cpp  
+    src/message/send_headers.cpp  
+    src/message/transaction.cpp  
+    src/message/verack.cpp  
+    src/message/version.cpp  
+    src/unicode/console_streambuf.cpp  
+    src/unicode/ifstream.cpp  
+    src/unicode/ofstream.cpp  
+    src/unicode/unicode.cpp  
+    src/unicode/unicode_istream.cpp  
+    src/unicode/unicode_ostream.cpp  
+    src/unicode/unicode_streambuf.cpp  
+    src/utility/binary.cpp  
+    src/utility/conditional_lock.cpp  
+    src/utility/deadline.cpp  
+    src/utility/dispatcher.cpp  
+    src/utility/flush_lock.cpp  
+    src/utility/interprocess_lock.cpp  
+    src/utility/istream_reader.cpp  
+    src/utility/monitor.cpp  
+    src/utility/ostream_writer.cpp  
+    src/utility/png.cpp  
+    src/utility/prioritized_mutex.cpp  
+    src/utility/property_tree.cpp  
+    src/utility/random.cpp  
+    src/utility/scope_lock.cpp  
+    src/utility/sequencer.cpp  
+    src/utility/sequential_lock.cpp  
+    src/utility/socket.cpp  
+    src/utility/string.cpp  
+    src/utility/thread.cpp  
+    src/utility/threadpool.cpp  
+    src/utility/work.cpp  
+    src/wallet/bitcoin_uri.cpp  
+    src/wallet/dictionary.cpp  
+    src/wallet/ec_private.cpp  
+    src/wallet/ec_public.cpp  
+    src/wallet/ek_private.cpp  
+    src/wallet/ek_public.cpp  
+    src/wallet/ek_token.cpp  
+    src/wallet/electrum.cpp  
+    src/wallet/electrum_dictionary.cpp  
+    src/wallet/encrypted_keys.cpp  
+    src/wallet/hd_private.cpp  
+    src/wallet/hd_public.cpp  
+    src/wallet/message.cpp  
+    src/wallet/mini_keys.cpp  
+    src/wallet/mnemonic.cpp  
+    src/wallet/payment_address.cpp  
+    src/wallet/qrcode.cpp  
+    src/wallet/select_outputs.cpp  
+    src/wallet/stealth_address.cpp  
+    src/wallet/stealth_receiver.cpp  
+    src/wallet/stealth_sender.cpp  
+    src/wallet/uri.cpp  
+    src/wallet/parse_encrypted_keys/parse_encrypted_key.hpp  
+    src/wallet/parse_encrypted_keys/parse_encrypted_key.ipp  
+    src/wallet/parse_encrypted_keys/parse_encrypted_prefix.hpp  
+    src/wallet/parse_encrypted_keys/parse_encrypted_prefix.ipp  
+    src/wallet/parse_encrypted_keys/parse_encrypted_private.cpp  
+    src/wallet/parse_encrypted_keys/parse_encrypted_private.hpp  
+    src/wallet/parse_encrypted_keys/parse_encrypted_public.cpp  
+    src/wallet/parse_encrypted_keys/parse_encrypted_public.hpp  
+    src/wallet/parse_encrypted_keys/parse_encrypted_token.cpp  
+    src/wallet/parse_encrypted_keys/parse_encrypted_token.hpp )
